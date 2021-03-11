@@ -1,0 +1,25 @@
+{
+  "name": "vue-echarts",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "NODE_ENV=development vite",
+    "build": "NODE_ENV=development vite build",
+    "build-prd": "NODE_ENV=production vite build"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "echarts": "^4.9.0",
+    "element-plus": "^1.0.1-beta.24",
+    "vue": "^3.0.0-rc.1",
+    "vue-router": "4.0.0-rc.5",
+    "vuex": "^4.0.0-beta.4",
+    "vuex-module-decorators": "^1.0.1"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-rc.1",
+    "less": "^3.12.2",
+    "less-loader": "^5.0.0",
+    "typescript": "^4.1.2",
+    "vite": "^1.0.0-rc.1"
+  }
+}

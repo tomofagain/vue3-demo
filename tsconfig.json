@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist/", // 打包后文件的位置
+      "noImplicitAny": false, //是否弹出any类型警告
+      "module": "esnext", // add this line
+      "target": "es5",
+      "esModuleInterop": true,
+      "allowJs": true, // 是否允许引入js
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "allowSyntheticDefaultImports": true,
+      "strictFunctionTypes": false,
+      "jsx": "react",
+      "baseUrl": ".",
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "paths": {
+        "/@/*": [
+          "src/*"
+        ]
+      },
+      "incremental": true,
+      "skipLibCheck": true,
+      "experimentalDecorators": true
+    },
+    "exclude": ["node_modules"]
+  }
