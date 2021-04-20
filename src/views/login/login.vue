@@ -1,38 +1,69 @@
 <template>
   <div class="login">
-    <div class="login-verify conic">
-      <el-form
-        :model="ruleForm"
-        status-icon
-        :rules="rules"
-        ref="ruleForm"
-        class="demo-ruleForm"
-      >
-        <p>账号登录</p>
-        <el-form-item label="" prop="username">
-          <el-input v-model="ruleForm.username" autocomplete="true">
-            <template #prefix>
-              <i class="el-input__icon el-icon-user"></i>
-            </template>
-          </el-input>
-        </el-form-item>
-        <el-form-item label="" prop="password">
-          <el-input
-            type="password"
-            v-model="ruleForm.password"
-            autocomplete="true"
-          >
-            <template #prefix>
-              <i class="el-input__icon el-icon-lock"></i>
-            </template>
-          </el-input>
-        </el-form-item>
-        <el-form-item class="button-check">
-          <el-button type="primary" @click="submitForm('ruleForm')"
-            >登录</el-button
-          >
-        </el-form-item>
-      </el-form>
+    <img src="/@/assets/images/login-bg.png" alt="" />
+    <div class="main">
+      <div class="login-tip">
+        <div class="contain-left-content">
+          <p>数据可用不可拥&ensp;&ensp;安全可见又可验</p>
+          <p>让安全审计可见</p>
+        </div>
+        <img src="/@/assets/images/login-img.png" alt="" />
+      </div>
+      <div class="login-verify">
+        <el-form
+          :model="ruleForm"
+          status-icon
+          :rules="rules"
+          ref="ruleForm"
+          class="demo-ruleForm"
+        >
+          <p>账号登录</p>
+          <el-form-item label="" prop="username">
+            <el-input v-model="ruleForm.username" autocomplete="true">
+              <template #prefix>
+                <i class="el-input__icon el-icon-user"></i>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="" prop="password">
+            <el-input
+              type="password"
+              v-model="ruleForm.password"
+              autocomplete="true"
+            >
+              <template #prefix>
+                <i class="el-input__icon el-icon-lock"></i>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item label="" prop="checkcode" class="confirm-code">
+            <div style="width: 200px; display: inline-block">
+              <el-input
+                type="input"
+                v-model="ruleForm.checkcode"
+                autocomplete="true"
+              >
+              </el-input>
+            </div>
+            <div style="display: inline-block; position: absolute">
+              <el-image
+                style="
+                  width: 100px;
+                  height: 40px;
+                  margin-left: 18px;
+                  border-radius: 3px;
+                "
+                :src="url"
+              ></el-image>
+            </div>
+          </el-form-item>
+          <el-form-item class="button-check">
+            <el-button type="primary" @click="submitForm('ruleForm')"
+              >登录</el-button
+            >
+          </el-form-item>
+        </el-form>
+      </div>
     </div>
   </div>
 </template>
@@ -61,15 +92,26 @@ export default {
         callback();
       }
     };
+    var validateCode = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入验证码"));
+      } else {
+        callback();
+      }
+    };
     return {
       ruleForm: {
         username: "zhangsan",
         password: "111111",
+        checkcode: "",
       },
       rules: {
         username: [{ validator: validateUser, trigger: "blur" }],
         password: [{ validator: validatePass, trigger: "blur" }],
+        checkcode: [{ validator: validateCode, trigger: "blur" }],
       },
+      url:
+        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
     };
   },
   methods: {
@@ -106,101 +148,83 @@ export default {
 <style lang="less" scoped>
 .login {
   position: fixed;
-  background: rgb(14, 2, 15);
   width: 100%;
   height: 100vh;
-  &-verify {
-    box-sizing: border-box;
-    width: 360px;
-    height: 400px;
-    background-color: rgba(0, 0, 0, 1);
+  img {
+    position: inherit;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+  }
+  .main {
+    width: 900px;
+    height: 500px;
     position: absolute;
     top: 50%;
+    margin-top: -250px;
     left: 50%;
-    box-shadow: 4px 4px 24px rgba(255, 255, 255, 0.1);
-    // border-radius: 6px;
-    transform: translate(-50%, -50%);
+    margin-left: -450px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-    .demo-ruleForm {
-      margin-top: -60px;
-      p {
+    flex-flow: row;
+    background: #9063ee;
+    border-radius: 5px;
+    .login-tip {
+      width: 500px;
+      height: 500px;
+      position: relative;
+      .contain-left-content {
+        color: #fff;
         width: 100%;
-        text-align: center;
-        font-size: 24px;
-        color: #ffffff;
-      }
-      width: 320px;
-      .button-check {
-        text-align: center;
-        .el-button {
-          width: 100%;
+        text-indent: 40px;
+        p:first-child {
+          margin-top: 54px;
+          font-size: 24px;
+        }
+        p:last-child {
+          margin-top: 20px;
+          font-size: 32px;
         }
       }
+      img {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        z-index: 10;
+        bottom: 0;
+      }
     }
-  }
-}
-
-.conic {
-  position: relative;
-  z-index: 0;
-  margin: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 2rem;
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    left: -50%;
-    top: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: #1a232a;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-image: conic-gradient(
-      transparent,
-      rgb(85, 8, 92),
-      transparent 30%
-    );
-    animation: rotate 4s linear infinite;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 6px;
-    top: 6px;
-    width: calc(100% - 12px);
-    height: calc(100% - 12px);
-    background: #000;
-    border-radius: 5px;
-  }
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-@keyframes clippath {
-  0%,
-  100% {
-    clip-path: inset(0 0 0 95%);
-  }
-
-  25% {
-    clip-path: inset(95% 0 0 0);
-  }
-  50% {
-    clip-path: inset(0 95% 0 0);
-  }
-  75% {
-    clip-path: inset(0 0 95% 0);
+    .login-verify {
+      box-sizing: border-box;
+      width: 400px;
+      height: 500px;
+      background-color: #ffffff;
+      // border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      .demo-ruleForm {
+        margin-top: -60px;
+        p {
+          width: 100%;
+          text-align: center;
+          font-size: 24px;
+          color: #000000;
+        }
+        width: 320px;
+        .button-check {
+          text-align: center;
+          .el-button {
+            width: 100%;
+          }
+        }
+      }
+      .confirm-code {
+        position: relative;
+      }
+    }
   }
 }
 </style>

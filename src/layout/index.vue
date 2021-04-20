@@ -52,14 +52,14 @@ export default {
   width: 100%;
   .el-header {
     height: 60px;
-    background-color: rgb(31, 31, 100);
+    background-color: #8966f7;
   }
 }
 .aside-container {
   transition: width 0.28s;
   width: 240px !important;
   padding: 0;
-  background-color: #545c64;
+  background-color: #1d1b2b;
   overflow: hidden !important;
   position: relative;
   z-index: 9;

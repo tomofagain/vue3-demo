@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <div class="logo">LOGO</div>
+    <div class="header-left">
+      <div class="logo">LOGO</div>
+    </div>
     <div>
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -41,10 +43,20 @@ export default {
   justify-content: space-between;
   height: 60px;
   line-height: 60px;
-  .logo {
-    letter-spacing: 2px;
-    font-style: italic;
-    font-weight: 600;
+  .header-left {
+    height: 60px;
+    width: 220px;
+    line-height: 70px;
+    border-right: 1px solid;
+    border-image: linear-gradient(#8966f7, white, #8966f7) 1 round; /* 标准的必须写在最后 */
+    img {
+      width: 180px;
+    }
+    .logo {
+      letter-spacing: 2px;
+      font-style: italic;
+      font-weight: 600;
+    }
   }
 }
 .el-dropdown-link {

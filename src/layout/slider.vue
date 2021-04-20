@@ -5,9 +5,9 @@
     class="el-menu-vertical"
     @open="handleOpen"
     @close="handleClose"
-    background-color="#545c64"
+    background-color="#1D1B2B"
     text-color="#fff"
-    active-text-color="#ffd04b"
+    active-text-color="#8966f7"
     :collapse="isCollapse"
   >
     <template v-for="item in childroute" :key="item.name">
@@ -36,7 +36,7 @@
   </el-menu>
 </template>
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, onUnmounted, onMounted } from "vue";
 import { childroute } from "/@/router/childNode";
 export default {
   props: {

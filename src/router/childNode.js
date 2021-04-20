@@ -1,21 +1,21 @@
-import { reactive } from 'vue'
+import { reactive } from "vue";
 export const childroute = reactive([
-    {
-      name: "导航一",
-      icon: "el-icon-menu",
-      path: "/home",
-      index: "1",
-    },
-    {
-      name: "导航二",
-      icon: "el-icon-location",
-      index: "2",
-      children: [
-        {
-          name: "选项1",
-          path: "/test/page1",
-          index: "2-1",
-        }
-      ],
-    }
-  ]);
+  {
+    name: "客户管理",
+    icon: "el-icon-user",
+    index: "1",
+    children: [
+      {
+        name: "客户列表",
+        path: "/test/page1",
+        index: "1-1",
+      },
+    ],
+  },
+  {
+    name: "任务列表",
+    icon: "el-icon-tickets",
+    path: "/home",
+    index: "2",
+  },
+]);
